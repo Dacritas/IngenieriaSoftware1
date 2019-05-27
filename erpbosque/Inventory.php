@@ -34,7 +34,7 @@ class Inventory {
 		}
 		return $data;
 	}
-	private function getNumRows($sqlQuery) { //Obtener el número de filas de 
+	private function getNumRows($sqlQuery) { //Obtener el número de filas de la consulta realizada
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
 		if(!$result){
 			die('Error in query: '. mysqli_error());
@@ -42,7 +42,7 @@ class Inventory {
 		$numRows = mysqli_num_rows($result);
 		return $numRows;
 	}
-	public function login($email, $password){
+	public function login($email, $password){ //Función de logeo con validación de password a la base de datos con MD5
 		$password = md5($password);
 		$sqlQuery = "
 			SELECT userid, email, password, name, type, status
