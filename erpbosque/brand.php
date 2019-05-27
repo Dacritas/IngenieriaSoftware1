@@ -6,6 +6,7 @@ $inventory = new Inventory();
 $inventory->checkLogin();
 ?>
 <title>ERP Universidad el bosque</title>
+<!--importacion de scripts necesarios-->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
@@ -14,6 +15,7 @@ $inventory->checkLogin();
 <meta charset="UTF-8">
 <div class="container">		
 	<h2>ERP Unbosque</h2>  	
+	<!--incrustacion del Navbar -->
 	<?php include("menus.php"); ?> 	
 	<div class="row">
 		<div class="col-lg-12">
@@ -24,11 +26,13 @@ $inventory->checkLogin();
                 			<h3 class="panel-title">Gestionar marca</h3>
                 		</div>
                 		<div class="col-md-2" align="right">
+						<!--boton para agregar una nueva marca -->
                 			<button type="button" name="add" id="addBrand" class="btn btn-success btn-xs">Agregar</button>
                 		</div>
                 	</div>
                 </div>
                 <div class="panel-body">
+				<!--creacion de table donde se mostraran las marcas -->
                 	<table id="brandList" class="table table-bordered table-striped">
                 		<thead>
 							<tr>
@@ -45,6 +49,7 @@ $inventory->checkLogin();
             </div>
         </div>
     </div>
+	<!--Creacion del modal para agregar nueva marca-->
     <div id="brandModal" class="modal fade">
     	<div class="modal-dialog">
     		<form method="post" id="brandForm">
