@@ -1,9 +1,9 @@
 <?php
 class Inventory {
     private $host  = 'localhost'; //Nombre del host para conexión a la base de datos
-    private $user  = 'dicoxczk_erpuser'; //usuario de conexión de la base de datos
+    private $user  = 'root'; //usuario de conexión de la base de datos
     private $password   = ''; //Clave de conexión a la base de datos
-    private $database  = 'dicoxczk_erp'; //Nombre de la base de datos 
+    private $database  = 'erpbosque'; //Nombre de la base de datos 
 	private $userTable = 'ims_user';	//Tabla de usuarios almacenada en una constante
     private $customerTable = 'ims_customer'; //Tabla de clientes almacenada en una constante
 	private $categoryTable = 'ims_category'; //Tabla de categorías almacenada en una constante

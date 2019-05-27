@@ -1,11 +1,5 @@
 $(document).ready(function(){
-	$('#addCustomer').click(function(){
-		$('#customerModal').modal('show');
-		$('#customerForm')[0].reset();
-		$('.modal-title').html("<i class='fa fa-plus'></i> Agregar comprador");
-		$('#action').val("Agregar");
-		$('#btn_action').val("Agregar");
-	});
+	
 	var userdataTable = $('#customerList').DataTable({
 		"lengthChange": false,
 		"processing": true,
@@ -26,6 +20,14 @@ $(document).ready(function(){
 		"pageLength": 25
 	});
 	
+	$('#addCustomer').click(function(){
+		$('#customerModal').modal('show');
+		$('#customerForm')[0].reset();
+		$('.modal-title').html("<i class='fa fa-plus'></i> Agregar cliente");
+		$('#action').val("customerAdd");
+		$('#btn_action').val("customerAdd");
+	});
+
 	$(document).on('submit', '#customerForm', function(event){
 		event.preventDefault();
 		$('#action').attr('disabled','disabled');
