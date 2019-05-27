@@ -28,6 +28,7 @@ $inventory->checkLogin();
 				</div>
 				<div class="panel-body">
 					<div class="row"><div class="col-sm-12 table-responsive">
+					<!--creacion de tabla de pagina principal-->
 						<table id="inventoryDetails" class="table table-bordered table-striped">
 							<thead><tr>
 								<th>Producto</th>      
@@ -45,7 +46,7 @@ $inventory->checkLogin();
 	</div>
 		
 </div>	
-<?php include('inc/footer.php');?>
+<?php include('inc/footer.php');?><!--incrustar foorter-->
 
 
 

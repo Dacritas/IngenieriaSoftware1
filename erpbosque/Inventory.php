@@ -8,12 +8,14 @@ class Inventory {
     private $customerTable = 'ims_customer'; //Tabla de clientes almacenada en una constante
 	private $categoryTable = 'ims_category'; //Tabla de categorías almacenada en una constante
 	private $brandTable = 'ims_brand'; //tabla de Marca almacenada en una constante
-	private $productTable = 'ims_product';
-	private $supplierTable = 'ims_supplier';
-	private $purchaseTable = 'ims_purchase';
-	private $orderTable = 'ims_order';
+	private $productTable = 'ims_product';//tabla de producto almacenada en una constante
+	private $supplierTable = 'ims_supplier';//tabla de proveedor almacenada en una constante
+	private $purchaseTable = 'ims_purchase';//tabla de compras almacenada en una constante
+	private $orderTable = 'ims_order';//tabla de venta almacenada en una constante
 	private $dbConnect = false;
+	//contructor de la clase
     public function __construct(){
+		//conexion a la base de datos
         if(!$this->dbConnect){ 
             $conn = new mysqli($this->host, $this->user, $this->password, $this->database);
             if($conn->connect_error){
@@ -22,7 +24,8 @@ class Inventory {
                 $this->dbConnect = $conn;
             }
         }
-    }
+	}
+	//funcion para verificar consultas a la base de datos
 	private function getData($sqlQuery) {
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
 		if(!$result){
@@ -50,11 +53,13 @@ class Inventory {
 			WHERE email='".$email."' AND password='".$password."'";
         return  $this->getData($sqlQuery);
 	}	
+	//funcion para verificar la sesion
 	public function checkLogin(){
 		if(empty($_SESSION['userid'])) {
 			header("Location:login.php");
 		}
 	}
+	//funcion obtener un cliente por su id
 	public function getCustomer(){
 		$sqlQuery = "
 			SELECT * FROM ".$this->customerTable." 
@@ -63,9 +68,10 @@ class Inventory {
 		$row = mysqli_fetch_array($result, MYSQL_ASSOC);
 		echo json_encode($row);
 	}
-	
+	//funcion para obtener todos los clientes de la base de datos
 	public function getCustomerList(){		
 		$sqlQuery = "SELECT * FROM ".$this->customerTable." ";
+		//buscar en la tabla
 		if(!empty($_POST["search"]["value"])){
 			$sqlQuery .= '(id LIKE "%'.$_POST["search"]["value"].'%" ';
 			$sqlQuery .= '(name LIKE "%'.$_POST["search"]["value"].'%" ';
@@ -73,6 +79,7 @@ class Inventory {
 			$sqlQuery .= 'OR mobile LIKE "%'.$_POST["search"]["value"].'%") ';
 			$sqlQuery .= 'OR balance LIKE "%'.$_POST["search"]["value"].'%") ';
 		}
+		//ordenar en la tabla por orden ascendente o desendente
 		if(!empty($_POST["order"])){
 			$sqlQuery .= 'ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
 		} else {
@@ -84,6 +91,7 @@ class Inventory {
 		$result = mysqli_query($this->dbConnect, $sqlQuery);
 		$numRows = mysqli_num_rows($result);
 		$customerData = array();	
+		//obtiene los datos de la base de datos y los incrusta en una tabla
 		while( $customer = mysqli_fetch_assoc($result) ) {		
 			$customerRows = array();
 			$customerRows[] = $customer['id'];
@@ -111,14 +119,15 @@ class Inventory {
 		mysqli_query($this->dbConnect, $sqlInsert);
 		echo 'New Customer Added';
 	}			*/
+	//funcion para insertar clientes en la base de datos
 public function saveCustomer() {		
 		$sqlInsert = "
 			INSERT INTO ".$this->customerTable." (name, address, mobile, balance) 
 			VALUES ('$_POST[cname]', '$_POST[address]', '$_POST[mobile]', '$_POST[balance]')";	
 		mysqli_query($this->dbConnect, $sqlInsert);
-		echo 'AGREGADO';
+		echo 'New Customer Added';
 	}
-
+//funcion para actualizar un cliente
 	public function updateCustomer() {
 		if($_POST['userid']) {	
 			$sqlInsert = "
@@ -129,19 +138,22 @@ public function saveCustomer() {
 			echo 'Customer Edited';
 		}	
 	}	
+	//funcion para eliminar un cliente
 	public function deleteCustomer(){
 		$sqlQuery = "
 			DELETE FROM ".$this->customerTable." 
 			WHERE id = '".$_POST['userid']."'";		
 		mysqli_query($this->dbConnect, $sqlQuery);		
 	}
-	// Category functions
+	//funcion para obtener todas las categorias
 	public function getCategoryList(){		
 		$sqlQuery = "SELECT * FROM ".$this->categoryTable." ";
+		//buscar en la tabla
 		if(!empty($_POST["search"]["value"])){
 			$sqlQuery .= 'WHERE (name LIKE "%'.$_POST["search"]["value"].'%" ';
 			$sqlQuery .= 'OR status LIKE "%'.$_POST["search"]["value"].'%") ';			
 		}
+		//ordenar por orden ascendente o descendente
 		if(!empty($_POST["order"])){
 			$sqlQuery .= 'ORDER BY '.$_POST['order']['0']['column'].' '.$_POST['order']['0']['dir'].' ';
 		} else {
@@ -207,7 +219,7 @@ public function saveCustomer() {
 			WHERE categoryid = '".$_POST["categoryId"]."'";		
 		mysqli_query($this->dbConnect, $sqlQuery);		
 	}
-	// Brand management 
+	//funcion para obtener todas las marcas de la base de datos
 	public function getBrandList(){				
 		$sqlQuery = "SELECT * FROM ".$this->brandTable." as b 
 			INNER JOIN ".$this->categoryTable." as c ON c.categoryid = b.categoryid ";
@@ -290,7 +302,7 @@ public function saveCustomer() {
 			WHERE id = '".$_POST["id"]."'";	
 		mysqli_query($this->dbConnect, $sqlQuery);		
 	}
-	// Product management 
+	//funcion para obtener todos los productos de la base de datos
 	public function getProductList(){				
 		$sqlQuery = "SELECT * FROM ".$this->productTable." as p
 			INNER JOIN ".$this->brandTable." as b ON b.id = p.brandid
@@ -472,7 +484,7 @@ public function saveCustomer() {
 		';
 		echo $productDetails;
 	}
-	// supplier 
+	//funcion para obtener todos los proveedores de la base de datos
 	public function getSupplierList(){		
 		$sqlQuery = "SELECT * FROM ".$this->supplierTable." ";
 		if(!empty($_POST["search"]["value"])){
