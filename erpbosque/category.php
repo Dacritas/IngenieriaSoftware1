@@ -6,6 +6,7 @@ $inventory = new Inventory();
 $inventory->checkLogin();
 ?>
 <title>ERP Universidad el bosque</title>
+<!--importacion de scripts necesarios-->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
@@ -13,8 +14,8 @@ $inventory->checkLogin();
 <script src="js/common.js"></script>
 <meta charset="UTF-8">
 <div class="container">		
-	<h2>ERP Unbosque</h2>  	
-	<?php include("menus.php"); ?> 
+	<h2>ERP Unbosque</h2>  		
+	<?php include("menus.php"); ?> <!--incrustacion del Navbar -->
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
@@ -26,6 +27,7 @@ $inventory->checkLogin();
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
                         <div class="row" align="right">
+						<!--boton para agregar una nueva marca -->
                              <button type="button" name="add" id="categoryAdd" data-toggle="modal" data-target="#categoryModal" class="btn btn-success btn-xs">Agregar</button>   		
                         </div>
                     </div>
@@ -34,6 +36,7 @@ $inventory->checkLogin();
                 <div class="panel-body">
                     <div class="row">
                     	<div class="col-sm-12 table-responsive">
+						<!--creacion de table donde se mostraran las marcas -->
                     		<table id="categoryList" class="table table-bordered table-striped">
                     			<thead><tr>
 									<th>ID</th>
@@ -49,6 +52,7 @@ $inventory->checkLogin();
             </div>
         </div>
     </div>
+	<!--Creacion del modal para agregar nueva categoria-->
     <div id="categoryModal" class="modal fade">
     	<div class="modal-dialog">
     		<form method="post" id="categoryForm">
@@ -72,4 +76,4 @@ $inventory->checkLogin();
     	</div>
     </div>
 </div>	
-<?php include('inc/footer.php');?>
+<?php include('inc/footer.php');?><!--incrustar foorter-->

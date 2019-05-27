@@ -6,6 +6,7 @@ $inventory = new Inventory();
 $inventory->checkLogin();
 ?>
 <title>ERP Universidad el bosque</title>
+<!--importacion de scripts necesarios-->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
@@ -13,7 +14,7 @@ $inventory->checkLogin();
 <meta charset="UTF-8">
 <div class="container">		
 	<h2>ERP Unbosque</h2>	
-	<?php include("menus.php"); ?>   
+	<?php include("menus.php"); ?>   <!--incrustacion del Navbar -->
 	
 	<div class="row">
 		<div class="col-lg-12">

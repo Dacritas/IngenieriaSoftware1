@@ -6,6 +6,7 @@ $inventory = new Inventory();
 $inventory->checkLogin();
 ?>
 <title>ERP Universidad el bosque</title>
+<!--importacion de scripts necesarios-->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
@@ -13,7 +14,7 @@ $inventory->checkLogin();
 <script src="js/common.js"></script>
 <div class="container">		
 	<h2>ERP Unbosque</h2>  	
-	<?php include("menus.php"); ?> 	
+	<?php include("menus.php"); ?> 	<!--incrustacion del Navbar -->
 	
 	<div class="row">
 			<div class="col-lg-12">
@@ -25,12 +26,14 @@ $inventory->checkLogin();
                             </div>
                         
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align='right'>
+                            <!--boton para agregar una nueva marca -->
                                 <button type="button" name="add" id="addProduct" class="btn btn-success btn-xs">Agregar</button>
                             </div>
                         </div>
                     </div>
                     <div class="panel-body">
                         <div class="row"><div class="col-sm-12 table-responsive">
+                        <!--creacion de table donde se mostraran las marcas -->
                             <table id="productList" class="table table-bordered table-striped">
                                 <thead><tr>
                                     <th>ID</th>      
@@ -51,7 +54,7 @@ $inventory->checkLogin();
                 </div>
 			</div>
 		</div>
-
+<!--Creacion del modal para agregar nuevo producto-->
         <div id="productModal" class="modal fade">
             <div class="modal-dialog">
                 <form method="post" id="productForm">
@@ -137,7 +140,7 @@ $inventory->checkLogin();
                 </form>
             </div>
         </div>
-
+<!--modal ver detalles producto-->
         <div id="productViewModal" class="modal fade">
             <div class="modal-dialog">
                 <form method="post" id="product_form">
@@ -159,4 +162,4 @@ $inventory->checkLogin();
         </div>
 	
 </div>	
-<?php include('inc/footer.php');?>
+<?php include('inc/footer.php');?><!--incrustar foorter-->

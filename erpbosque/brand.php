@@ -81,4 +81,5 @@ $inventory->checkLogin();
     	</div>
     </div>
 </div>	
+<!--incrustar foorter-->
 <?php include('inc/footer.php');?>

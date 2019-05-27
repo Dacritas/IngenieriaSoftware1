@@ -6,6 +6,7 @@ $inventory = new Inventory();
 $inventory->checkLogin();
 ?>
 <title>ERP Universidad el bosque</title>
+<!--importacion de scripts necesarios-->
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>		
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
@@ -24,6 +25,7 @@ $inventory->checkLogin();
 							<h3 class="panel-title">Gestion de proveedores</h3>
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6" align="right">
+						<!--boton para agregar una nueva marca -->
 							<button type="button" name="add" id="addSupplier" data-toggle="modal" data-target="#userModal" class="btn btn-success btn-xs">Agregar</button>
 						</div>
 					</div>					   
@@ -32,6 +34,7 @@ $inventory->checkLogin();
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-sm-12 table-responsive">
+						<!--creacion de table donde se mostraran las marcas -->
 							<table id="supplierList" class="table table-bordered table-striped">
 								<thead>
 									<tr>
@@ -50,6 +53,7 @@ $inventory->checkLogin();
 				</div>
 			</div>
 		</div>
+		<!--Creacion del modal para agregar nueva proveedor-->
         <div id="supplierModal" class="modal fade">
         	<div class="modal-dialog">
         		<form method="post" id="supplierForm">
@@ -84,4 +88,4 @@ $inventory->checkLogin();
         </div>	
 	</div>	
 </div>	
-<?php include('inc/footer.php');?>
+<?php include('inc/footer.php');?><!--incrustar foorter-->
